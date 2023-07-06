@@ -1,33 +1,34 @@
-env            = "dev"
+env            = "prod"
 default_vpc_id = "vpc-075435ce9af088bfa"
 bastion_cidr   = ["172.31.12.243/32"]
 monitor_cidr   = ["172.31.9.50/32"]
+hosted_zone    = "devopsb70.online"
 
 vpc = {
   main = {
-    cidr_block        = "10.0.0.0/16"
+    cidr_block        = "10.100.0.0/16"
     availability_zone = ["us-east-1a", "us-east-1b"]
     public_subnets = {
       public = {
         name        = "public"
-        cidr_block  = ["10.0.0.0/24", "10.0.1.0/24"]
+        cidr_block  = ["10.100.0.0/24", "10.100.1.0/24"]
         internet_gw = true
       }
     }
     private_subnets = {
       web = {
         name       = "web"
-        cidr_block = ["10.0.2.0/24", "10.0.3.0/24"]
+        cidr_block = ["10.100.2.0/24", "10.100.3.0/24"]
         nat_gw     = true
       }
       app = {
         name       = "app"
-        cidr_block = ["10.0.4.0/24", "10.0.5.0/24"]
+        cidr_block = ["10.100.4.0/24", "10.100.5.0/24"]
         nat_gw     = true
       }
       db = {
         name       = "db"
-        cidr_block = ["10.0.6.0/24", "10.0.7.0/24"]
+        cidr_block = ["10.100.6.0/24", "10.100.7.0/24"]
         nat_gw     = true
       }
     }
@@ -52,7 +53,7 @@ rds = {
     engine              = "aurora-mysql"
     engine_version      = "5.7.mysql_aurora.2.11.1"
     number_of_instances = 1
-    instance_class      = "db.t3.small"
+    instance_class      = "db.t3.large"
   }
 }
 
@@ -83,6 +84,7 @@ alb = {
     subnets_type = "public_subnet_ids"
     subnets_name = "public"
     internal     = false
+    dns_domain   = "www"
   }
 
   private = {
@@ -90,6 +92,7 @@ alb = {
     subnets_type = "private_subnet_ids"
     subnets_name = "app"
     internal     = true
+    dns_domain   = ""
   }
 }
 
@@ -102,9 +105,9 @@ apps = {
     allow_cidr_subnets_type = "public_subnets"
     allow_cidr_subnets_name = "public"
     app_port                = 80
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
+    max_size                = 5
+    min_size                = 2
+    desired_capacity        = 2
     instance_type           = "t3.micro"
     alb                     = "public"
     listener_priority       = 0
@@ -117,9 +120,9 @@ apps = {
     app_port                = 8080
     allow_cidr_subnets_type = "private_subnets"
     allow_cidr_subnets_name = "app"
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
+    max_size                = 5
+    min_size                = 2
+    desired_capacity        = 2
     instance_type           = "t3.micro"
     alb                     = "private"
     listener_priority       = 100
@@ -132,9 +135,9 @@ apps = {
     app_port                = 8080
     allow_cidr_subnets_type = "private_subnets"
     allow_cidr_subnets_name = "app"
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
+    max_size                = 5
+    min_size                = 2
+    desired_capacity        = 2
     instance_type           = "t3.micro"
     alb                     = "private"
     listener_priority       = 101
@@ -147,9 +150,9 @@ apps = {
     app_port                = 8080
     allow_cidr_subnets_type = "private_subnets"
     allow_cidr_subnets_name = "app"
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
+    max_size                = 5
+    min_size                = 2
+    desired_capacity        = 2
     instance_type           = "t3.micro"
     alb                     = "private"
     listener_priority       = 102
@@ -162,10 +165,10 @@ apps = {
     app_port                = 8080
     allow_cidr_subnets_type = "private_subnets"
     allow_cidr_subnets_name = "app"
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
-    instance_type           = "t3.micro"
+    max_size                = 10
+    min_size                = 3
+    desired_capacity        = 3
+    instance_type           = "t3.medium"
     alb                     = "private"
     listener_priority       = 103
   }
@@ -177,10 +180,10 @@ apps = {
     app_port                = 8080
     allow_cidr_subnets_type = "private_subnets"
     allow_cidr_subnets_name = "app"
-    max_size                = 2
-    min_size                = 1
-    desired_capacity        = 1
-    instance_type           = "t3.micro"
+    max_size                = 5
+    min_size                = 2
+    desired_capacity        = 2
+    instance_type           = "t3.small"
     alb                     = "private"
     listener_priority       = 104
   }
