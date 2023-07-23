@@ -1,5 +1,5 @@
 module "vpc" {
-  source         = "github.com/github.com/SurendraKumar17/tf-module-vpc"
+  source         = "github.com/SurendraKumar17/tf-module-vpc"
   env            = var.env
   for_each          = var.vpc
   cidr_block        = each.value.cidr_block
