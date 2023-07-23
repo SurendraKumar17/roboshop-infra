@@ -1,6 +1,6 @@
 module "vpc" {
   source         = "github.com/SurendraKumar17/tf-module-vpc"
-  env            = var.env
+#   env            = var.env
   for_each          = var.vpc
   cidr_block        = each.value.cidr_block
 #   default_vpc_id = var.default_vpc_id
