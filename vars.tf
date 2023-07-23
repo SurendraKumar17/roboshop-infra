@@ -1,5 +1,5 @@
-variable "env" {}
-variable "vpc" {}
+#variable "env" {}
+#variable "vpc" {}
 # variable "default_vpc_id" {}
 # variable "docdb" {}
 # variable "rds" {}
@@ -10,3 +10,11 @@ variable "vpc" {}
 # variable "bastion_cidr" {}
 # variable "monitor_cidr" {}
 # variable "hosted_zone" {}
+
+
+variable "env" {
+   type = string
+   default = dev
+}
+
+
