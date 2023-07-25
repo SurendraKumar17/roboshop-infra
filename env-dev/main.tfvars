@@ -1,4 +1,4 @@
-#env            = "dev"
+env            = "dev"
 # default_vpc_id = "vpc-075435ce9af088bfa"
 # bastion_cidr   = ["172.31.12.243/32"]
 # monitor_cidr   = ["172.31.9.50/32"]
@@ -6,6 +6,7 @@
 vpc = {
   main = {
     cidr_block        = "10.0.0.0/16"
+    cidr_block1  = ["10.0.0.0/24", "10.0.1.0/24"]  // remove
 #     availability_zone = ["us-east-1a", "us-east-1b"]
 #     public_subnets = {
 #       public = {
