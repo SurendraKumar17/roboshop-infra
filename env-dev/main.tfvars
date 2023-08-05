@@ -45,38 +45,38 @@ docdb = {
   }
 }
 
-# rds = {
-#   main = {
-#     vpc_name            = "main"
-#     subnets_name        = "db"
-#     engine              = "aurora-mysql"
-#     engine_version      = "5.7.mysql_aurora.2.11.1"
-#     number_of_instances = 1
-#     instance_class      = "db.t3.small"
-#   }
-# }
-#
-# elasticache = {
-#   main = {
-#     vpc_name        = "main"
-#     subnets_name    = "db"
-#     num_cache_nodes = 1
-#     node_type       = "cache.t3.micro"
-#     engine_version  = "6.x"
-#   }
-# }
-#
-# rabbitmq = {
-#   main = {
-#     vpc_name           = "main"
-#     subnets_name       = "db"
-#     engine_type        = "RabbitMQ"
-#     engine_version     = "3.10.10"
-#     host_instance_type = "mq.t3.micro"
-#     deployment_mode    = "SINGLE_INSTANCE"
-#   }
-# }
-#
+rds = {
+  main = {
+    vpc_name            = "main"
+    subnets_name        = "db"
+    engine              = "aurora-mysql"
+    engine_version      = "5.7.mysql_aurora.2.11.1"
+    number_of_instances = 1
+    instance_class      = "db.t3.small"
+  }
+}
+
+elasticache = {
+  main = {
+    vpc_name        = "main"
+    subnets_name    = "db"
+    num_cache_nodes = 1
+    node_type       = "cache.t3.micro"
+    engine_version  = "6.x"
+  }
+}
+
+rabbitmq = {
+  main = {
+    vpc_name           = "main"
+    subnets_name       = "db"
+    engine_type        = "RabbitMQ"
+    engine_version     = "3.10.10"
+    host_instance_type = "mq.t3.micro"
+    deployment_mode    = "SINGLE_INSTANCE"
+  }
+}
+
 # alb = {
 #   public = {
 #     vpc_name     = "main"

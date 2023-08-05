@@ -11,7 +11,7 @@ module "vpc" {
 
 
 module "docdb" {
-  source = "github.com/raghudevopsb70/tf-module-docdb"
+  source = "github.com/SurendraKumar17/tf-module-docdb"
   env    = var.env
 
   for_each            = var.docdb
@@ -22,48 +22,48 @@ module "docdb" {
   number_of_instances = each.value.number_of_instances
   instance_class      = each.value.instance_class
 }
-#
-# module "rds" {
-#   source = "github.com/raghudevopsb70/tf-module-rds"
-#   env    = var.env
-#
-#   for_each            = var.rds
-#   subnet_ids          = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
-#   vpc_id              = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
-#   allow_cidr          = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
-#   engine              = each.value.engine
-#   engine_version      = each.value.engine_version
-#   number_of_instances = each.value.number_of_instances
-#   instance_class      = each.value.instance_class
-# }
-#
-#
-# module "elasticache" {
-#   source = "github.com/raghudevopsb70/tf-module-elasticache"
-#   env    = var.env
-#
-#   for_each        = var.elasticache
-#   subnet_ids      = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
-#   vpc_id          = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
-#   allow_cidr      = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
-#   num_cache_nodes = each.value.num_cache_nodes
-#   node_type       = each.value.node_type
-#   engine_version  = each.value.engine_version
-# }
-#
-# module "rabbitmq" {
-#   source       = "github.com/raghudevopsb70/tf-module-rabbitmq"
-#   env          = var.env
-#   bastion_cidr = var.bastion_cidr
-#
-#   for_each   = var.rabbitmq
-#   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
-#   vpc_id     = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
-#   allow_cidr = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
-# }
+
+module "rds" {
+  source = "github.com/SurendraKumar17/tf-module-rds"
+  env    = var.env
+
+  for_each            = var.rds
+  subnet_ids          = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
+  vpc_id              = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
+  allow_cidr          = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
+  engine              = each.value.engine
+  engine_version      = each.value.engine_version
+  number_of_instances = each.value.number_of_instances
+  instance_class      = each.value.instance_class
+}
+
+
+module "elasticache" {
+  source = "github.com/SurendraKumar17/tf-module-elasticache"
+  env    = var.env
+
+  for_each        = var.elasticache
+  subnet_ids      = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
+  vpc_id          = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
+  allow_cidr      = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
+  num_cache_nodes = each.value.num_cache_nodes
+  node_type       = each.value.node_type
+  engine_version  = each.value.engine_version
+}
+
+module "rabbitmq" {
+  source       = "github.com/SurendraKumar17/tf-module-rabbitmq"
+  env          = var.env
+  bastion_cidr = var.bastion_cidr
+
+  for_each   = var.rabbitmq
+  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), "private_subnet_ids", null), each.value.subnets_name, null), "subnet_ids", null)
+  vpc_id     = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
+  allow_cidr = lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)
+}
 #
 # //module "alb" {
-# //  source = "github.com/raghudevopsb70/tf-module-alb"
+# //  source = "github.com/SurendraKumar17/tf-module-alb"
 # //  env    = var.env
 # //
 # //  for_each     = var.alb
@@ -78,7 +78,7 @@ module "docdb" {
 #
 # ## This is for servers. For Mutable & Immutable
 # //module "apps" {
-# //  source = "github.com/raghudevopsb70/tf-module-app"
+# //  source = "github.com/SurendraKumar17/tf-module-app"
 # //  env    = var.env
 # //
 # //  depends_on = [module.docdb, module.rds, module.rabbitmq, module.alb, module.rds, module.elasticache]
