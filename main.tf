@@ -118,21 +118,21 @@ resource "aws_ec2_tag" "tag" {
   value       = "load-runner"
 }
 
-resource "null_resource" "apply" {
-  provisioner "remote-exec" {
-    connection {
-      host     = aws_spot_instance_request.load.public_ip
-      user     = "root"
-      password = "DevOps321"
-    }
-    inline = [
-      "curl -s -L https://get.docker.com | bash",
-      "systemctl enable docker",
-      "systemctl start docker",
-      "docker pull robotshop/rs-load"
-    ]
-  }
-}
+# resource "null_resource" "apply" {
+#   provisioner "remote-exec" {
+#     connection {
+#       host     = aws_spot_instance_request.load.public_ip
+#       user     = "root"
+#       password = "DevOps321"
+#     }
+#     inline = [
+#       "curl -s -L https://get.docker.com | bash",
+#       "systemctl enable docker",
+#       "systemctl start docker",
+#       "docker pull robotshop/rs-load"
+#     ]
+#   }
+# }
 
 
 //module "minikube" {
