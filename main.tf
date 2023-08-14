@@ -132,7 +132,7 @@ resource "null_resource" "apply" {
       "docker pull robotshop/rs-load"
     ]
   }
-# }
+}
 
 
 //module "minikube" {
