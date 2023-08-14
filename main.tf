@@ -99,39 +99,39 @@ module "apps" {
   listener_priority = each.value.listener_priority
 
   bastion_cidr = var.bastion_cidr
-  monitor_cidr = var.monitor_cidr
+#   monitor_cidr = var.monitor_cidr
 
 }
 
-# // Load Test Machine
-# resource "aws_spot_instance_request" "load" {
-#   instance_type          = "t3.medium"
-#   ami                    = "ami-068510c19de1f805d"
-#   subnet_id              = "subnet-06b4a5240a6690f30"
-#   vpc_security_group_ids = ["sg-0b76619b671c82bea"]
-#   wait_for_fulfillment   = true
-# }
-#
-# resource "aws_ec2_tag" "tag" {
-#   resource_id = aws_spot_instance_request.load.spot_instance_id
-#   key         = "Name"
-#   value       = "load-runner"
-# }
-#
-# resource "null_resource" "apply" {
-#   provisioner "remote-exec" {
-#     connection {
-#       host     = aws_spot_instance_request.load.public_ip
-#       user     = "root"
-#       password = "DevOps321"
-#     }
-#     inline = [
-#       "curl -s -L https://get.docker.com | bash",
-#       "systemctl enable docker",
-#       "systemctl start docker",
-#       "docker pull robotshop/rs-load"
-#     ]
-#   }
+// Load Test Machine
+resource "aws_spot_instance_request" "load" {
+  instance_type          = "t3.medium"
+  ami                    = "ami-068510c19de1f805d"
+  subnet_id              = "subnet-06b4a5240a6690f30"
+  vpc_security_group_ids = ["sg-0b76619b671c82bea"]
+  wait_for_fulfillment   = true
+}
+
+resource "aws_ec2_tag" "tag" {
+  resource_id = aws_spot_instance_request.load.spot_instance_id
+  key         = "Name"
+  value       = "load-runner"
+}
+
+resource "null_resource" "apply" {
+  provisioner "remote-exec" {
+    connection {
+      host     = aws_spot_instance_request.load.public_ip
+      user     = "root"
+      password = "DevOps321"
+    }
+    inline = [
+      "curl -s -L https://get.docker.com | bash",
+      "systemctl enable docker",
+      "systemctl start docker",
+      "docker pull robotshop/rs-load"
+    ]
+  }
 # }
 
 
