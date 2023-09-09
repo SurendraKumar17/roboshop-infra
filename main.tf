@@ -1,5 +1,5 @@
 module "vpc" {
-  source         = "github.com/raghudevopsb70/tf-module-vpc"
+  source         = "github.com/SurendraKumar17/tf-module-vpc"
   env            = var.env
   default_vpc_id = var.default_vpc_id
 
@@ -12,7 +12,7 @@ module "vpc" {
 
 
 module "docdb" {
-  source = "github.com/raghudevopsb70/tf-module-docdb"
+  source = "github.com/SurendraKumar17/tf-module-docdb"
   env    = var.env
 
   for_each            = var.docdb
@@ -25,7 +25,7 @@ module "docdb" {
 }
 
 # module "rds" {
-#   source = "github.com/raghudevopsb70/tf-module-rds"
+#   source = "github.com/SurendraKumar17/tf-module-rds"
 #   env    = var.env
 #
 #   for_each            = var.rds
@@ -40,7 +40,7 @@ module "docdb" {
 #
 #
 # module "elasticache" {
-#   source = "github.com/raghudevopsb70/tf-module-elasticache"
+#   source = "github.com/SurendraKumar17/tf-module-elasticache"
 #   env    = var.env
 #
 #   for_each        = var.elasticache
@@ -53,7 +53,7 @@ module "docdb" {
 # }
 #
 # module "rabbitmq" {
-#   source       = "github.com/raghudevopsb70/tf-module-rabbitmq"
+#   source       = "github.com/SurendraKumar17/tf-module-rabbitmq"
 #   env          = var.env
 #   bastion_cidr = var.bastion_cidr
 #
@@ -64,7 +64,7 @@ module "docdb" {
 # }
 
 //module "alb" {
-//  source = "github.com/raghudevopsb70/tf-module-alb"
+//  source = "github.com/SurendraKumar17/tf-module-alb"
 //  env    = var.env
 //
 //  for_each     = var.alb
@@ -79,7 +79,7 @@ module "docdb" {
 
 ## This is for servers. For Mutable & Immutable
 //module "apps" {
-//  source = "github.com/raghudevopsb70/tf-module-app"
+//  source = "github.com/SurendraKumar17/tf-module-app"
 //  env    = var.env
 //
 //  depends_on = [module.docdb, module.rds, module.rabbitmq, module.alb, module.rds, module.elasticache]
