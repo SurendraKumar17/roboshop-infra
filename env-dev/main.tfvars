@@ -65,7 +65,7 @@ vpc = {
       engine_version  = "6.x"
     }
   }
-#
+
   rabbitmq = {
     main = {
       vpc_name           = "main"
