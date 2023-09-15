@@ -68,19 +68,19 @@ module "rabbitmq" {
 
 }
 
-//module "alb" {
-//  source = "github.com/SurendraKumar17/tf-module-alb"
-//  env    = var.env
-//
-//  for_each     = var.alb
-//  subnet_ids   = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), each.value.subnets_type, null), each.value.subnets_name, null), "subnet_ids", null)
-//  vpc_id       = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
-//  allow_cidr   = each.value.internal ? concat(lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "web", null), "cidr_block", null), lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)) : ["0.0.0.0/0"]
-//  subnets_name = each.value.subnets_name
-//  internal     = each.value.internal
-//  dns_domain   = each.value.dns_domain
-//}
-//
+module "alb" {
+  source = "github.com/SurendraKumar17/tf-module-alb"
+  env    = var.env
+
+  for_each     = var.alb
+  subnet_ids   = lookup(lookup(lookup(lookup(module.vpc, each.value.vpc_name, null), each.value.subnets_type, null), each.value.subnets_name, null), "subnet_ids", null)
+  vpc_id       = lookup(lookup(module.vpc, each.value.vpc_name, null), "vpc_id", null)
+  allow_cidr   = each.value.internal ? concat(lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "web", null), "cidr_block", null), lookup(lookup(lookup(lookup(var.vpc, each.value.vpc_name, null), "private_subnets", null), "app", null), "cidr_block", null)) : ["0.0.0.0/0"]
+  subnets_name = each.value.subnets_name
+  internal     = each.value.internal
+  dns_domain   = each.value.dns_domain
+}
+
 
 ## This is for servers. For Mutable & Immutable
 //module "apps" {
