@@ -5,7 +5,7 @@ variable "docdb" {}
 variable "rds" {}
 variable "elasticache" {}
 variable "rabbitmq" {}
-# variable "alb" {}
+variable "alb" {}
 variable "apps" {}
 variable "bastion_cidr" {}
 # variable "monitor_cidr" {}
