@@ -107,8 +107,8 @@ apps = {
     min_size                = 1
     desired_capacity        = 1
     instance_type           = "t3.micro"
-    alb                     = "public"
-    listener_priority       = 0
+#     alb                     = "public"
+#     listener_priority       = 0
   }
   catalogue = {
     component               = "catalogue"
@@ -122,8 +122,8 @@ apps = {
     min_size                = 1
     desired_capacity        = 1
     instance_type           = "t3.micro"
-    alb                     = "private"
-    listener_priority       = 100
+#     alb                     = "private"
+#     listener_priority       = 100
   }
 #   user = {
 #     component               = "user"
